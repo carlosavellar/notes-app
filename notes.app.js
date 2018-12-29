@@ -45,8 +45,14 @@ button[0].addEventListener('click', (e)=>{
 
 });
 button[1].addEventListener('click', (e)=>{
-    console.log(e);
-    console.log('Remove all');
+    // console.log(e);
+    // console.log('Remove all');
+    const p = document.querySelectorAll('p');
+    p.forEach(el=>{
+        el.remove();
+        
+    });
+    notes.forEach(note => note = '');
 });
 
 document.querySelector('input').addEventListener('input', e=>{
