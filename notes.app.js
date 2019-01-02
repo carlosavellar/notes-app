@@ -1,53 +1,22 @@
-let notes = [];
+let notes = notesFunction();
 
 const filters = {
     searchText: ''    
 }
 
-const getNote = localStorage.getItem('notes');
-
-if(getNote !== null){
-    notes = JSON.parse(getNote);
-}else{
-    console.log("______ Porra nenhuma");
-}
-
-const renderNote = (note, filter) =>{
-    const filterNotes = note.filter(elnote=>{
-        return elnote.title.toLowerCase().includes(filter.searchText.toLowerCase());
-    });
-
-    document.querySelector('#notes').innerHTML = '';
-
-    filterNotes.forEach(el=>{
-        const ptag = document.createElement('p');
-
-        if(el.title.length > 0){
-            ptag.textContent = el.textContent;
-                console.log(el.title);;
-        }else{
-            console.log();
-            ptag.textContent = 'Unnamed title';
-        }
-
-        document.querySelector('#notes').appendChild(ptag);
-    });
-}
-
-
 renderNote(notes, filters);
+
 const button = document.querySelectorAll('button');
 
 button[0].addEventListener('click', (e)=>{
 
+    renderNote(notes, filters);
     notes.push({
         title: '',
         body: ''
     });
-    localStorage.setItem('notes', JSON.stringify(notes));
+   saveElement(notes);
 
-
-    renderNote(notes, filters);
     
 });
 button[1].addEventListener('click', (e)=>{
