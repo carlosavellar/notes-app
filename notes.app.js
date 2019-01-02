@@ -20,17 +20,23 @@ const renderNote = (note, filter) => {
     document.querySelector('#notes').innerHTML = '';
 
     filterNotes.forEach(el => {
-        const ptag = document.createElement('p');
-
+        const ptag = document.createElement('div');
+        const nodeText = document.createElement('span');
+        const btn = document.createElement('button');
+        btn.textContent = 'x';
+        
+        ptag.appendChild(btn);
         if (el.title.length > 0) {
-            ptag.textContent = el.textContent;
+            nodeText.textContent = el.textContent;
             console.log(el.title);;
         } else {
             console.log();
-            ptag.textContent = 'Unnamed title';
+            nodeText.textContent = 'Unnamed title';
         }
-
         document.querySelector('#notes').appendChild(ptag);
+        ptag.appendChild(nodeText);
+        
+        return ptag;
     });
 }
 
@@ -50,14 +56,17 @@ button[0].addEventListener('click', (e) => {
     renderNote(notes, filters);
 
 });
-button[1].addEventListener('click', (e) => {
-    // console.log(e);
-    // console.log('Remove all');
-    const p = document.querySelectorAll('p');
-    p.forEach(el => {
-        el.remove();
-    });
-    notes.forEach(note => note = '');
+document.getElementById("removeAll").addEventListener("click", e => {
+  // console.log(e);
+  // console.log('Remove all');
+  
+  const divNotes = document.querySelectorAll('#notes div');
+  divNotes.forEach(el => {
+    el.remove();
+  });
+  notes = [];
+  localStorage.removeItem("notes");
+  console.log(notes);
 });
 
 document.querySelector('input').addEventListener('input', e => {
