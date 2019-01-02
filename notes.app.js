@@ -29,11 +29,7 @@ const renderNote = (note, filter) =>{
         ptag.textContent = el.title;
         document.querySelector('#notes').appendChild(ptag);
     });
-
-
 }
-
-
 
 renderNote(notes, filters);
 const button = document.querySelectorAll('button');
@@ -49,8 +45,7 @@ button[1].addEventListener('click', (e)=>{
     // console.log('Remove all');
     const p = document.querySelectorAll('p');
     p.forEach(el=>{
-        el.remove();
-        
+        el.remove();  
     });
     notes.forEach(note => note = '');
 });
