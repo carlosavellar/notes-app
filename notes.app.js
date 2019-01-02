@@ -1,20 +1,15 @@
-const notes = [
-    {
-        title: "Love me tender",
-        body: "I think its gonna rain"
-    },
-    {
-        title: "Deth metal ",
-        body: "Napalm Death Show"
-    },
-    {
-        title: "Everything JS",
-        body: "Understand any JS framework just by looking at it"
-    }
-];
+let notes = [];
 
 const filters = {
     searchText: ''    
+}
+
+const getNote = localStorage.getItem('notes');
+
+if(getNote !== null){
+    notes = JSON.parse(getNote);
+}else{
+    console.log("______ Porra nenhuma");
 }
 
 const renderNote = (note, filter) =>{
@@ -26,26 +21,41 @@ const renderNote = (note, filter) =>{
 
     filterNotes.forEach(el=>{
         const ptag = document.createElement('p');
-        ptag.textContent = el.title;
+
+        if(el.title.length > 0){
+            ptag.textContent = el.textContent;
+                console.log(el.title);;
+        }else{
+            console.log();
+            ptag.textContent = 'Unnamed title';
+        }
+
         document.querySelector('#notes').appendChild(ptag);
     });
 }
+
 
 renderNote(notes, filters);
 const button = document.querySelectorAll('button');
 
 button[0].addEventListener('click', (e)=>{
-    console.log(e);
-    console.log('Create note');
-    e.target.textContent = 'Button Was Clicked';
 
+    notes.push({
+        title: '',
+        body: ''
+    });
+    localStorage.setItem('notes', JSON.stringify(notes));
+
+
+    renderNote(notes, filters);
+    
 });
 button[1].addEventListener('click', (e)=>{
     // console.log(e);
     // console.log('Remove all');
     const p = document.querySelectorAll('p');
     p.forEach(el=>{
-        el.remove();  
+        el.remove(); 
     });
     notes.forEach(note => note = '');
 });
