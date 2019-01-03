@@ -1,3 +1,7 @@
+var uniqueId = function () {
+    return 'id-' + Math.random().toString(36).substr(2, 16);
+};
+
 let notes = [];
 
 const filters = {
@@ -7,6 +11,7 @@ const filters = {
 const getNote = localStorage.getItem('notes');
 
 if (getNote !== null) {
+    console.log(getNote);
     notes = JSON.parse(getNote);
 } else {
     console.log("______ Porra nenhuma");
@@ -51,8 +56,6 @@ button[0].addEventListener('click', (e) => {
         body: ''
     });
     localStorage.setItem('notes', JSON.stringify(notes));
-
-
     renderNote(notes, filters);
 
 });
