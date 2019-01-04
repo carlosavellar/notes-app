@@ -8,13 +8,30 @@ const filters = {
     searchText: ''
 }
 
-const getNote = localStorage.getItem('notes');
+const getSavedNotes = () => {
+    const getNote = localStorage.getItem('notes'); 
+    if (getNote !== null) {
+        notes = JSON.parse(getNote);
+    } else {
+        console.log("______ Porra nenhuma");
+    }
+    return notes;
+}
+getSavedNotes();
 
-if (getNote !== null) {
-    console.log(getNote);
-    notes = JSON.parse(getNote);
-} else {
-    console.log("______ Porra nenhuma");
+const removeNode = (id) =>{
+     const findNode = notes.findIndex(()=>{
+       return notes.id = id;
+     });
+
+     console.log(findNode);
+ 
+     if(findNode > -1){
+        notes.splice(findNode, 1);
+        // localStorage.removeItem("findNode");
+        renderNote(notes, filters);
+     }
+
 }
 
 const renderNote = (note, filter) => {
@@ -26,18 +43,20 @@ const renderNote = (note, filter) => {
 
     filterNotes.forEach(el => {
         const ptag = document.createElement('div');
-        const nodeText = document.createElement('span');
+        const nodeText = document.createElement('a');
         const btn = document.createElement('button');
         btn.textContent = 'x';
-        
+        btn.addEventListener('click', ()=>{
+            removeNode(el.id);
+        });
         ptag.appendChild(btn);
         if (el.title.length > 0) {
             nodeText.textContent = el.textContent;
             console.log(el.title);;
         } else {
-            console.log();
             nodeText.textContent = 'Unnamed title';
         }
+        nodeText.setAttribute('href',`edit.html#${uniqueId()}`);
         document.querySelector('#notes').appendChild(ptag);
         ptag.appendChild(nodeText);
         
@@ -50,18 +69,18 @@ renderNote(notes, filters);
 const button = document.querySelectorAll('button');
 
 button[0].addEventListener('click', (e) => {
-
+    const id = uniqueId();
     notes.push({
+        id,
         title: '',
         body: ''
     });
     localStorage.setItem('notes', JSON.stringify(notes));
     renderNote(notes, filters);
+    location.assign(`edit.html#${id}`);
 
 });
 document.getElementById("removeAll").addEventListener("click", e => {
-  // console.log(e);
-  // console.log('Remove all');
   
   const divNotes = document.querySelectorAll('#notes div');
   divNotes.forEach(el => {
@@ -69,7 +88,6 @@ document.getElementById("removeAll").addEventListener("click", e => {
   });
   notes = [];
   localStorage.removeItem("notes");
-  console.log(notes);
 });
 
 document.querySelector('input').addEventListener('input', e => {
