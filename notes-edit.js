@@ -8,3 +8,6 @@ const note = notes2.find(note => {
 if(note === undefined){
     location.assign('./index.html');
 }
+
+console.log(note.text);
+
