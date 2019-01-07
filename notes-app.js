@@ -60,3 +60,5 @@ document.querySelector("#searchTitle").addEventListener("input", (e) => {
 document.querySelector("#sort").addEventListener("change", e => {
     console.log(e.target.value);
 });
+
+console.log('Doing Again');
