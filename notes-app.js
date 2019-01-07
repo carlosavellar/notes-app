@@ -1,64 +1,79 @@
-let notes = [];
+let notes = [{
+        title: "Carlson",
+        body: "Body calrson"
+    },
+    {
+        title: "isa",
+        body: "Body calrson"
+    },
+    {
+        title: "Loso",
+        body: "Body calrson"
+    }
+];
 
 const filters = {
-    titleNote: '',
-    compolete: ''
+    serachText: ''
 };
 
-
-let jsonNote = localStorage.getItem('notes');
-if (jsonNote !== null) {
-    notes = JSON.parse(jsonNote);
+const noteJSON = localStorage.getItem('notes');
+if(noteJSON !== null){
+    notes = JSON.parse(noteJSON);
 }
 
-const renderNotes = (notes, filter) => {
+const renderNotes = (notes, filters) => {
     let filteredNotes = notes.filter(note => {
-        return note.title.toLowerCase().includes(filter.titleNote.toLowerCase());
+        return note.title.toLowerCase().includes(filters.serachText.toLowerCase());
     });
+    document.querySelector('#notes').innerHTML = '';
 
-    document.querySelector("#notes").innerHTML = '';
     filteredNotes.forEach(note => {
+        const pTag = document.createElement('p');
+        const divTxtBody = document.createElement('span');
+        const icon = document.createElement('i');
+        icon.classList.add("fas", "fa-calendar-check");
         
-        const noteEl = document.createElement('p');
-        if (note.title.length > 0) {
-            noteEl.textContent = note.title;
-        } else {
-            // noteEl.textContent = 'No name';
+        if(note.title.length > 0){
+            pTag.textContent = note.title;
+            divTxtBody.textContent = note.body;
+        }else{
+            pTag.textContent = '___';
+            divTxtBody.textContent = '___';
         }
-        document.querySelector("#notes").appendChild(noteEl);
-    });
-}
 
+        !!note.title && !!note.body ? divTxtBody.appendChild(icon) : false;
+
+        document.querySelector('#notes').appendChild(pTag);
+
+        pTag.appendChild(divTxtBody);
+        
+       
+    });
+    // console.log(textBody);
+}
 
 renderNotes(notes, filters);
 
-document.querySelector("#create-note").addEventListener("submit", (e) => {
+document.querySelector("#searchTitle").addEventListener('input', e => {
+    filters.serachText = e.target.value;
+    renderNotes(notes, filters);
+});
+
+document.querySelector("#create-note").addEventListener('submit', e => {
     e.preventDefault();
     notes.push({
         title: e.target.elements.newNote.value,
+        body: e.target.elements.textBody.value
+    });
+    notes.push({
+        title:'',
         body: ''
     });
     localStorage.setItem('notes', JSON.stringify(notes));
-    
+
     renderNotes(notes, filters);
 });
 
-document.querySelector('#create-note').addEventListener("click", () => {
-    renderNotes(notes, filters);
-});
-
-document.querySelector("#defaultCheck1").addEventListener("change", (e) => {
-    renderNotes(notes, filters);
-});
-
-document.querySelector("#searchTitle").addEventListener("input", (e) => {
-    e.preventDefault();
-    filters.titleNote = e.target.value;
-    renderNotes(notes, filters);
-});
-
-document.querySelector("#sort").addEventListener("change", e => {
+document.querySelector("#sort").addEventListener("change", e=>{
     console.log(e.target.value);
 });
-
-console.log('Doing Again');
