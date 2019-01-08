@@ -1,24 +1,34 @@
 const titleNote = document.getElementById("textNote");
 const bodyNote = document.getElementById("textBody");
+
 const id = location.hash.substr(1);
 let notes = getSavedNotes();
 
-const indexNote = notes.find(note => {
+const note = notes.find(note => {
     return note.id = id;
 });
 
-if (indexNote === undefined) {
+if (note === undefined) {
     location.assign('./index.html');
 }
 
-console.log(`${indexNote.title}___`);
+console.log(`${note.title}___`);
 
-document.getElementById("textNote").value = indexNote.title;
-document.getElementById("textBody").value = indexNote.body;
+document.getElementById("textNote").value = note.title;
+document.getElementById("textBody").value = note.body;
 
 
-document.getElementById("textNote").addEventListener('change', e => {
-    notes.title = e.target.value;
+titleNote.addEventListener('input', e => {
+    note.title = e.target.value;
     saveNotes(notes);
+});
+bodyNote.addEventListener('input', e => {
+    note.body = e.target.value;
+    saveNotes(notes);
+});
 
+document.querySelector("#remove").addEventListener("click", () => {
+    removeNote(id);
+    saveNotes(notes);
+    location.assign(`./index.html`);
 });

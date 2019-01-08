@@ -14,9 +14,9 @@ document.querySelector("#create-note").addEventListener('submit', e => {
     const id = uniqueId();
     e.preventDefault();
     notes.push({
+        id,
         title: e.target.elements.newNote.value,
-        body: e.target.elements.textBody.value,
-        id
+        body: e.target.elements.textBody.value
     });
 
     saveNotes(notes);
