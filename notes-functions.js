@@ -9,14 +9,14 @@ const saveNotes = () => {
     localStorage.setItem('notes', JSON.stringify(notes));
 }
 
-const removeNote = id =>{
+const removeNote = id => {
     const fnote = notes.findIndex(note => note.id === id);
     if (fnote > -1) notes.splice(fnote, 1);
 }
 
 const generateNoteDom = (note) => {
     const divItem = document.createElement('div');
-    const pTag = document.createElement('p');
+    const pTag = document.createElement('a');
     pTag.classList.add('d-inline-block');
     const divTxtBody = document.createElement('span');
     const icon = document.createElement('i');
@@ -39,12 +39,12 @@ const generateNoteDom = (note) => {
 
     if (note.title.length > 0 || note.body.length > 0) {
         pTag.textContent = note.title;
+        pTag.setAttribute("href", `./edit.html#${note.id}`);
         divTxtBody.textContent = note.body;
     } else {
         pTag.textContent = '___';
         divTxtBody.textContent = '___';
     };
-
 
     !!note.title && !!note.body ? divTxtBody.appendChild(icon) : false;
     pTag.appendChild(divTxtBody);
@@ -63,7 +63,7 @@ const renderNotes = (notes, filters) => {
         const generatedDom = generateNoteDom(note);
         document.querySelector('#notes').appendChild(generatedDom);
 
-       
+
     });
 
 }

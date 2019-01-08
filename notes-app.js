@@ -2,8 +2,10 @@ var uniqueId = function () {
     return 'id-' + Math.random().toString(36).substr(2, 16);
 };
 
-let notes = []; 
-const filters = { serachText: '' };
+let notes = [];
+const filters = {
+    serachText: ''
+};
 
 getSavedNotes();
 
@@ -28,15 +30,10 @@ document.querySelector("#create-note").addEventListener('submit', e => {
     renderNotes(notes, filters);
 });
 
-document.querySelector("#sort").addEventListener("change", e=>{
+document.querySelector("#sort").addEventListener("change", e => {
     console.log(e.target.value);
 });
 
 document.querySelector('#removeAll').addEventListener("click", e => {
     removeAll();
-});
-
-document.querySelector('.del').addEventListener("click", node =>{
-     
-     
 });

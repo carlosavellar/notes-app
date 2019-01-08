@@ -1,13 +1,23 @@
-const notesId = location.hash.substr(1);
-const notes2 = getSavedNotes();
+const id = location.hash.substr(1);
+let notes = getSavedNotes();
 
-const note = notes2.find(note => {
-    return note.id === notesId;
+const indexNote = notes.find(note => {
+    return note.id = id;
 });
 
-if(note === undefined){
+console.log(indexNote);
+if (indexNote === undefined) {
     location.assign('./index.html');
 }
 
-console.log(note.text);
+const titleTxt = document.querySelector("#text-note");
+const boodyTxt = document.querySelector("#text-body");
 
+titleTxt.value = indexNote.title;
+boodyTxt.value = indexNote.body;
+
+titleTxt.addEventListener("input", e => {
+    notes.title = e.target.value;
+    saveNotes(notes);
+
+});
