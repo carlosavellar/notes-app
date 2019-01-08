@@ -1,6 +1,7 @@
 var uniqueId = function () {
     return 'id-' + Math.random().toString(36).substr(2, 16);
 };
+
 let notes = getSavedNotes();
 
 const filters = {
@@ -8,11 +9,6 @@ const filters = {
 };
 
 renderNotes(notes, filters);
-
-document.querySelector("#searchTitle").addEventListener('input', e => {
-    filters.serachText = e.target.value;
-    renderNotes(notes, filters);
-});
 
 document.querySelector("#create-note").addEventListener('submit', e => {
     const id = uniqueId();
@@ -27,6 +23,8 @@ document.querySelector("#create-note").addEventListener('submit', e => {
     saveNotes();
     renderNotes(notes, filters);
 });
+
+
 
 document.querySelector("#sort").addEventListener("change", e => {
     console.log(e.target.value);
