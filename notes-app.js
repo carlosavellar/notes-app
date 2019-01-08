@@ -13,7 +13,6 @@ renderNotes(notes, filters);
 document.querySelector("#create-note").addEventListener('submit', e => {
     const id = uniqueId();
     e.preventDefault();
-    console.log(notes);
     notes.push({
         title: e.target.elements.newNote.value,
         body: e.target.elements.textBody.value,

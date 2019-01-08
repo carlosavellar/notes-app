@@ -38,7 +38,7 @@ const generateNoteDom = (note) => {
     divItem.prepend(btnDel);
 
     icon.classList.add("fas", "fa-calendar-check");
-
+    console.log(note);
     if (note.title.length > 0 || note.body.length > 0) {
         pTag.textContent = note.title;
         pTag.setAttribute("href", `./edit.html#${note.id}`);

@@ -7,7 +7,6 @@ const indexNote = notes.find(note => {
     return note.id = id;
 });
 
-console.log(indexNote);
 if (indexNote === undefined) {
     location.assign('./index.html');
 }
@@ -18,7 +17,8 @@ document.getElementById("textNote").value = indexNote.title;
 document.getElementById("textBody").value = indexNote.body;
 
 
-titleNote.addEventListener('input', e => {
+document.getElementById("textNote").addEventListener('change', e => {
     notes.title = e.target.value;
     saveNotes(notes);
+
 });
