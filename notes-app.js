@@ -1,3 +1,7 @@
+var uniqueId = function () {
+    return 'id-' + Math.random().toString(36).substr(2, 16);
+};
+
 let notes = []; 
 const filters = { serachText: '' };
 
@@ -11,15 +15,15 @@ document.querySelector("#searchTitle").addEventListener('input', e => {
 });
 
 document.querySelector("#create-note").addEventListener('submit', e => {
+    const id = uniqueId();
     e.preventDefault();
+    console.log(notes);
     notes.push({
         title: e.target.elements.newNote.value,
-        body: e.target.elements.textBody.value
+        body: e.target.elements.textBody.value,
+        id
     });
-    notes.push({
-        title:'',
-        body: ''
-    });
+
     saveNotes();
     renderNotes(notes, filters);
 });
@@ -30,4 +34,9 @@ document.querySelector("#sort").addEventListener("change", e=>{
 
 document.querySelector('#removeAll').addEventListener("click", e => {
     removeAll();
+});
+
+document.querySelector('.del').addEventListener("click", node =>{
+     
+     
 });

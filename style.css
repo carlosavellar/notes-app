@@ -10,3 +10,8 @@ p > span{
 p > span i {
     margin-left: 6px;
 }
+
+.del{
+    padding: 3px;
+    margin-right: 5px !important;
+}

@@ -1,36 +1,60 @@
-const getSavedNotes = ()=> {
+const getSavedNotes = () => {
     const noteJSON = localStorage.getItem('notes');
     if (noteJSON !== null) {
         notes = JSON.parse(noteJSON);
     }
 }
 
-const saveNotes = () =>{
+const saveNotes = () => {
     localStorage.setItem('notes', JSON.stringify(notes));
 }
 
-const generateNoteDom = (note) =>{
-   const pTag = document.createElement('p');
-   const divTxtBody = document.createElement('span');
-   const icon = document.createElement('i');
-   icon.classList.add("fas", "fa-calendar-check");
+const removeNote = id =>{
+    const fnote = notes.findIndex(note => note.id === id);
+    if (fnote > -1) notes.splice(fnote, 1);
+}
 
-   if (note.title.length > 0) {
-       pTag.textContent = note.title;
-       divTxtBody.textContent = note.body;
-   } else {
-       pTag.textContent = '___';
-       divTxtBody.textContent = '___';
-   }
+const generateNoteDom = (note) => {
+    const divItem = document.createElement('div');
+    const pTag = document.createElement('p');
+    pTag.classList.add('d-inline-block');
+    const divTxtBody = document.createElement('span');
+    const icon = document.createElement('i');
+    const btnDel = document.createElement('span');
 
-   !!note.title && !!note.body ? divTxtBody.appendChild(icon) : false;
+    btnDel.addEventListener('click', (id) => {
+        removeNote(note.id);
+        saveNotes();
+        renderNotes(notes, filters);
+    });
 
-   pTag.appendChild(divTxtBody);
+    const iconDel = document.createElement('i');
+    btnDel.classList.add('del', 'd-inline-block');
+    iconDel.classList.add("fas", "fa-times");
+    btnDel.appendChild(iconDel);
 
-   return pTag;
+    divItem.prepend(btnDel);
+
+    icon.classList.add("fas", "fa-calendar-check");
+
+    if (note.title.length > 0 || note.body.length > 0) {
+        pTag.textContent = note.title;
+        divTxtBody.textContent = note.body;
+    } else {
+        pTag.textContent = '___';
+        divTxtBody.textContent = '___';
+    };
+
+
+    !!note.title && !!note.body ? divTxtBody.appendChild(icon) : false;
+    pTag.appendChild(divTxtBody);
+    divItem.appendChild(pTag);
+
+    return divItem;
 }
 
 const renderNotes = (notes, filters) => {
+    // debugger
     let filteredNotes = notes.filter(note => {
         return note.title.toLowerCase().includes(filters.serachText.toLowerCase());
     });
@@ -38,11 +62,14 @@ const renderNotes = (notes, filters) => {
     filteredNotes.forEach(note => {
         const generatedDom = generateNoteDom(note);
         document.querySelector('#notes').appendChild(generatedDom);
+
+       
     });
+
 }
 
-const removeAll = () =>{
+const removeAll = () => {
     notes = [];
     localStorage.clear();
     renderNotes(notes, filters);
-} 
+}
