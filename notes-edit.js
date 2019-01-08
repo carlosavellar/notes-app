@@ -4,7 +4,7 @@ const bodyNote = document.getElementById("textBody");
 const id = location.hash.substr(1);
 let notes = getSavedNotes();
 
-const note = notes.find(note => {
+let note = notes.find(note => {
     return note.id = id;
 });
 
@@ -14,8 +14,8 @@ if (note === undefined) {
 
 console.log(`${note.title}___`);
 
-document.getElementById("textNote").value = note.title;
-document.getElementById("textBody").value = note.body;
+titleNote.value = note.title;
+bodyNote.value = note.body;
 
 
 titleNote.addEventListener('input', e => {
@@ -31,4 +31,24 @@ document.querySelector("#remove").addEventListener("click", () => {
     removeNote(id);
     saveNotes(notes);
     location.assign(`./index.html`);
+});
+
+window.addEventListener('storage', function (e) {
+    console.log(e.storageArea);
+    // debugger
+
+    // if (e.key === "notes") {
+    //     saveNotes(notes);
+    //     notes = getSavedNotes();
+
+    //     note = notes.find(note => {
+    //         return note.id = id;
+    //     });
+
+    //     if (note === undefined) {
+    //         location.assign('./index.html');
+    //     }
+    //     titleNote.value = note.title;
+    //     bodyNote.value = note.body;
+    // }
 });
