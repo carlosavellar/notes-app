@@ -7,7 +7,7 @@ const getSavedNotes = () => {
     }
 }
 
-const saveNotes = () => {
+const saveNotes = (notes) => {
     localStorage.setItem('notes', JSON.stringify(notes));
 }
 
@@ -26,7 +26,7 @@ const generateNoteDom = (note) => {
 
     btnDel.addEventListener('click', (id) => {
         removeNote(note.id);
-        saveNotes();
+        saveNotes(notes);
         renderNotes(notes, filters);
     });
 

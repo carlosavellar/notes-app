@@ -20,11 +20,9 @@ document.querySelector("#create-note").addEventListener('submit', e => {
         id
     });
 
-    saveNotes();
+    saveNotes(notes);
     renderNotes(notes, filters);
 });
-
-
 
 document.querySelector("#sort").addEventListener("change", e => {
     console.log(e.target.value);
