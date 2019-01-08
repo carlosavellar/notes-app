@@ -10,14 +10,14 @@ if (indexNote === undefined) {
     location.assign('./index.html');
 }
 
-const titleTxt = document.querySelector("#text-note");
-const boodyTxt = document.querySelector("#text-body");
+const titleTxt = document.querySelector("#text-note").value;
+const boodyTxt = document.querySelector("#text-body").value;
 
-titleTxt.value = indexNote.title;
-boodyTxt.value = indexNote.body;
+titleTxt = indexNote.title;
+boodyTxt = indexNote.body;
 
-titleTxt.addEventListener("input", e => {
-    notes.title = e.target.value;
-    saveNotes(notes);
+// titleTxt.addEventListener("input", e => {
+//     notes.title = e.target.value;
+//     saveNotes(notes);
 
-});
+// });

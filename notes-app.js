@@ -1,13 +1,11 @@
 var uniqueId = function () {
     return 'id-' + Math.random().toString(36).substr(2, 16);
 };
+let notes = getSavedNotes();
 
-let notes = [];
 const filters = {
     serachText: ''
 };
-
-getSavedNotes();
 
 renderNotes(notes, filters);
 
