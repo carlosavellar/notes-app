@@ -73,10 +73,10 @@ const renderNotes = (notes, filters) => {
         return note.title.toLowerCase().includes(filters.serachText.toLowerCase());
     });
     document.querySelector('#notes').innerHTML = '';
-/* 
-    Loop trogh the let that contains all Notes
-    Creates an constant bind the generateNoteDom 
-    function passing the note(forEach) as argument */
+    /* 
+        Loop trogh the let that contains all Notes
+        Creates an constant bind the generateNoteDom 
+        function passing the note(forEach) as argument */
     filteredNotes.forEach(note => {
         const generatedDom = generateNoteDom(note);
         document.querySelector('#notes').appendChild(generatedDom);
