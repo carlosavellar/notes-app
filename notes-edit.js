@@ -1,57 +1,24 @@
-// Este commit
-
-
-const titleNote = document.getElementById("textNote");
-const bodyNote = document.getElementById("textBody");
+const titleTxt = document.querySelector("#textNote");
+const bodyTxt = document.querySelector("#textBody");
 
 const id = location.hash.substr(1);
-let notes = getSavedNotes();
+const notes = getSavedNotes();
 
-let note = notes.find(note => {
-    return note.id = id;
+const note = notes.find(note => {
+    return note.id === id;
 });
 
 if (note === undefined) {
     location.assign('./index.html');
 }
 
-console.log(`${note.title}___`);
+titleTxt.value = note.title;
+bodyTxt.value = note.body;
 
-titleNote.value = note.title;
-bodyNote.value = note.body;
-
-
-titleNote.addEventListener('input', e => {
+titleTxt.addEventListener("input", e => {
+    console.log();
     note.title = e.target.value;
-    saveNotes(notes);
-});
-bodyNote.addEventListener('input', e => {
-    note.body = e.target.value;
-    saveNotes(notes);
-});
 
-document.querySelector("#remove").addEventListener("click", () => {
-    removeNote(id);
-    saveNotes(notes);
-    location.assign(`./index.html`);
-});
-
-window.addEventListener('storage', function (e) {
-    console.log(e.storageArea);
-    // debugger
-
-    // if (e.key === "notes") {
-    //     saveNotes(notes);
-    //     notes = getSavedNotes();
-
-    //     note = notes.find(note => {
-    //         return note.id = id;
-    //     });
-
-    //     if (note === undefined) {
-    //         location.assign('./index.html');
-    //     }
-    //     titleNote.value = note.title;
-    //     bodyNote.value = note.body;
-    // }
+    console.log(e.target.value);
+    saveNotes();
 });
