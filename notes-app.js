@@ -1,9 +1,9 @@
-var uniqueId = function() {
+var uniqueId = function () {
   return (
     "id-" +
     Math.random()
-      .toString(36)
-      .substr(2, 16)
+    .toString(36)
+    .substr(2, 16)
   );
 };
 
@@ -36,4 +36,9 @@ document.querySelector("#sort").addEventListener("change", e => {
 
 document.querySelector("#removeAll").addEventListener("click", e => {
   removeAll();
+});
+
+document.querySelector('#searchTitle').addEventListener("input", e => {
+  filters.serachText = e.target.value;
+  renderNotes(notes, filters);
 });
