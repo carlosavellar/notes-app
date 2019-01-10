@@ -1,7 +1,6 @@
 window.addEventListener("storage", e => {
     console.log(e);
     console.log("weww");
-    debugger
 
 });
 const titleTxt = document.querySelector("#textNote");
@@ -31,7 +30,6 @@ titleTxt.addEventListener("input", e => {
 
 window.addEventListener("storage", e => {
     console.log(e);
-    debugger
     if (e.key === 'notes') {
         notes = JSON.parse(e.newValue);
         note = notes.find(note => {
@@ -43,6 +41,6 @@ window.addEventListener("storage", e => {
         }
         titleTxt.value = note.title;
         bodyTxt.value = note.body;
-
+        // renderNotes(notes, filters);
     }
 });
