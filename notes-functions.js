@@ -67,13 +67,22 @@ const lastEdited = (notes, sortedBy) => {
             } 
         });
     }else if(sortedBy === 'lastCreated'){
-
         return notes.sort((a,b)=>{
             if(a.createdAt > b.createdAt ){
                 return -1;
             }else if(a.createdAt < b.createdAt){
                 return 1;
             }else{
+                return 0;
+            }
+        });
+    }else if(sortedBy === 'sortAlphabetcly'){
+        return notes.sort((a, b) => {
+            if (a.title.toLowerCase() > b.title.toLowerCase()) {
+                return 1;
+            } else if (a.title.toLowerCase() < b.title.toLowerCase()) {
+                return -1;
+            } else {
                 return 0;
             }
         });
