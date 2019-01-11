@@ -32,7 +32,7 @@ document.querySelector("#create-note").addEventListener("submit", e => {
     title: e.target.elements.newNote.value,
     body: e.target.elements.textBody.value,
     createdAt: timestamp,
-    updatedAt: 
+    updatedAt: timestamp
   });
   renderNotes(notes, filters);
   saveNotes();

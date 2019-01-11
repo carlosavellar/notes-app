@@ -66,3 +66,7 @@ const renderNotes = (notes, filters) => {
     });
 }
 
+
+const updateTimeStamp = (timestamp) =>{
+    return `Last updated in ${moment(timestamp).fromNow()}`;
+}

@@ -5,6 +5,7 @@ window.addEventListener("storage", e => {
 
 const titleTxt = document.querySelector("#textNote");
 const bodyTxt = document.querySelector("#textBody");
+const lableUpdate = document.querySelector('.get-time');
 
 let id = location.hash.substr(1);
 let notes = getSavedNotes();
@@ -35,9 +36,7 @@ bodyTxt.addEventListener("input", e => {
 
 window.onload = () => {
     setInterval(()=>{
-        document.querySelector('.get-time').innerHTML = '';
-        let updatingTime = document.querySelector('.get-time');
-        updatingTime.textContent = `Last updated in ${moment(note.updatedAt).fromNow()}`;
+        lableUpdate.textContent = updateTimeStamp(note.updatedAt);
     }, 1000);
 };
 
