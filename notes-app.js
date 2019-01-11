@@ -9,7 +9,6 @@ var uniqueId = function () {
     .substr(2, 16)
   );
 };
-let now = moment();
 // const createAt = () => {
 //   let now = moment();
 //   now.minute("YYYY-MM-DD HH:mm");
@@ -27,14 +26,13 @@ renderNotes(notes, filters);
 document.querySelector("#create-note").addEventListener("submit", e => {
   e.preventDefault();
   const id = uniqueId();
-  const createdAt = now.minute();
-
+  const timestamp = minute();
   notes.push({
     id,
     title: e.target.elements.newNote.value,
     body: e.target.elements.textBody.value,
-    createdAt,
-    updatedAt: ''
+    createdAt: timestamp,
+    updatedAt: 
   });
   renderNotes(notes, filters);
   saveNotes();

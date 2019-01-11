@@ -1,67 +1,68 @@
 const getSavedNotes = () => {
-  const noteJson = localStorage.getItem("notes");
-  if (noteJson) {
-    return JSON.parse(noteJson);
-  } else {
-    return [];
-  }
-};
+    const noteJson = localStorage.getItem('notes');
+    if (noteJson) {
+        return JSON.parse(noteJson);
+    } else {
+        return [];
+    }
+}
 
 const saveNotes = () => {
-  localStorage.setItem("notes", JSON.stringify(notes));
-};
+    localStorage.setItem('notes', JSON.stringify(notes));
+}
 
 const removeAll = () => {
-  notes = [];
-  localStorage.clear();
-};
+    notes = [];
+    localStorage.clear();
+}
 
-const removeNote = id => {
-  const indexNote = notes.findIndex(note => {
-    return note.id === id;
-  });
-  if (indexNote > -1) {
-    notes.splice(indexNote, 1);
-  }
-};
+const removeNote = (id) => {
+    const indexNote = notes.findIndex((note) => {
+        return note.id === id;
+    });
+    if (indexNote > -1) {
+        notes.splice(indexNote, 1);
+    }
+}
 
-const generateNoteDom = note => {
-  let divItem = document.createElement("div");
-  let itemLink = document.createElement("a");
-  let span = document.createElement("span");
-  let delBtn = document.createElement("button");
-  delBtn.setAttribute("type", "button");
-  delBtn.classList.add("close");
-  let spanClose = document.createElement("span");
-  spanClose.setAttribute("aria-hidden", "true");
-  spanClose.textContent = "x";
-  delBtn.appendChild(spanClose);
-  delBtn.classList.add("float-left", "del");
-  delBtn.addEventListener("click", () => {
-    removeNote(note.id);
-    renderNotes(notes, filters);
-  });
-  itemLink.setAttribute("href", `./edit.html#${note.id}`);
+const generateNoteDom = (note) => {
+    let divItem = document.createElement('div');
+    let itemLink = document.createElement('a');
+    let span = document.createElement('span');
+    let delBtn = document.createElement('button');
+    delBtn.setAttribute("type", "button");
+    delBtn.classList.add("close");
+    let spanClose = document.createElement("span");
+    spanClose.setAttribute("aria-hidden", "true");
+    spanClose.textContent = "x";
+    delBtn.appendChild(spanClose);
+    delBtn.classList.add("float-left", "del");
+    delBtn.addEventListener('click', () => {
+        removeNote(note.id);
+        renderNotes(notes, filters);
+    });
+    itemLink.setAttribute("href", `./edit.html#${note.id}`);
 
-  if (note.title.length > 0 || note.body.length > 0) {
-    itemLink.textContent = note.title ? note.title : "__|_/";
-    span.textContent = note.body ? note.body : "__|_/";
-  }
+    if (note.title.length > 0 || note.body.length > 0) {
+        itemLink.textContent = note.title ? note.title : '__|_/';;
+        span.textContent = note.body ? note.body : '__|_/';
+    }
 
-  divItem.appendChild(delBtn);
-  itemLink.appendChild(span);
-  divItem.appendChild(itemLink);
+    divItem.appendChild(delBtn);
+    itemLink.appendChild(span);
+    divItem.appendChild(itemLink);
 
-  document.querySelector("#notes").appendChild(divItem);
-};
+    document.querySelector("#notes").appendChild(divItem);
+}
 
 const renderNotes = (notes, filters) => {
-  let filteredNote = notes.filter(note => {
-    return note.title.toLowerCase().includes(filters.serachText.toLowerCase());
-  });
-  document.querySelector("#notes").innerHTML = "";
+    let filteredNote = notes.filter(note => {
+        return note.title.toLowerCase().includes(filters.serachText.toLowerCase());
+    });
+    document.querySelector('#notes').innerHTML = '';
 
-  filteredNote.forEach(note => {
-    generateNoteDom(note);
-  });
-};
+    filteredNote.forEach(note => {
+        generateNoteDom(note);
+    });
+}
+
