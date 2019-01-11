@@ -18,7 +18,8 @@ var uniqueId = function () {
 let notes = getSavedNotes();
 
 const filters = {
-  serachText: ""
+  searchText: "",
+  sortedBy: "lastCreated"
 };
 
 renderNotes(notes, filters);
@@ -26,7 +27,7 @@ renderNotes(notes, filters);
 document.querySelector("#create-note").addEventListener("submit", e => {
   e.preventDefault();
   const id = uniqueId();
-  const timestamp = minute();
+  const timestamp = moment();
   notes.push({
     id,
     title: e.target.elements.newNote.value,
@@ -40,7 +41,7 @@ document.querySelector("#create-note").addEventListener("submit", e => {
 });
 
 document.querySelector("#searchTitle").addEventListener("input", e => {
-  filters.serachText = e.target.value;
+  filters.searchText = e.target.value;
   renderNotes(notes, filters);
 });
 
@@ -56,4 +57,10 @@ window.addEventListener("storage", e => {
     saveNotes();
     renderNotes(notes, filters);
   }
+});
+
+document.querySelector("#sort").addEventListener("change", (e) => {
+    console.log(e.target.value);
+    filters.sortedBy = e.target.value;
+    renderNotes(notes, filters);
 });

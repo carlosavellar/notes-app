@@ -55,9 +55,27 @@ const generateNoteDom = (note) => {
     document.querySelector("#notes").appendChild(divItem);
 }
 
+const lastEdited = (notes, sortedBy) => {
+    if (sortedBy === 'lastEdited') {
+        return notes.sort((a, b)=>{
+            if(a.updatedAt > b.updatedAt){
+                return -1;
+            }else if(a.updatedAt < b.updatedAt){
+                return 1;
+            }else{
+                return 0;
+            } 
+        });
+    }else{
+        return notes;
+    }
+}
+
 const renderNotes = (notes, filters) => {
+    window.r = notes;
+    notes = lastEdited(notes, filters.sortedBy);
     let filteredNote = notes.filter(note => {
-        return note.title.toLowerCase().includes(filters.serachText.toLowerCase());
+        return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
     });
     document.querySelector('#notes').innerHTML = '';
 
