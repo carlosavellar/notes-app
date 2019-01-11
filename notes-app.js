@@ -19,7 +19,7 @@ let notes = getSavedNotes();
 
 const filters = {
   searchText: "",
-  sortedBy: "lastCreated"
+  sortedBy: ""
 };
 
 renderNotes(notes, filters);
@@ -27,7 +27,7 @@ renderNotes(notes, filters);
 document.querySelector("#create-note").addEventListener("submit", e => {
   e.preventDefault();
   const id = uniqueId();
-  const timestamp = moment();
+  const timestamp = moment().valueOf();
   notes.push({
     id,
     title: e.target.elements.newNote.value,

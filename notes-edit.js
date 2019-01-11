@@ -56,6 +56,5 @@ window.addEventListener("storage", e => {
         note.updatedAt = moment();
         const lastUpdate = note.updatedAt.fromNow(note.updatedAt);
         timeUpdated(lastUpdate, ".get-time");
-        // renderNotes(notes, filters);
     }
 });
