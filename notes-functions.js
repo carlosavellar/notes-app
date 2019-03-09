@@ -97,6 +97,7 @@ const renderNotes = (notes, filters) => {
     let filteredNote = notes.filter(note => {
         return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
     });
+    
     document.querySelector('#notes').innerHTML = '';
 
     filteredNote.forEach(note => {

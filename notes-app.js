@@ -1,5 +1,4 @@
 // const moment = require('moment');
-// alert('eeee');
 
 var uniqueId = function () {
   return (
@@ -37,7 +36,6 @@ document.querySelector("#create-note").addEventListener("submit", e => {
   });
   renderNotes(notes, filters);
   saveNotes();
-  console.log(notes);
 });
 
 document.querySelector("#searchTitle").addEventListener("input", e => {
@@ -60,7 +58,6 @@ window.addEventListener("storage", e => {
 });
 
 document.querySelector("#sort").addEventListener("change", (e) => {
-    console.log(e.target.value);
     filters.sortedBy = e.target.value;
     renderNotes(notes, filters);
 });

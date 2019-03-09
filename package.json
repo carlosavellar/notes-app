@@ -8,10 +8,7 @@
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --open"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/carlosavellar/notes-app.git"
-  },
+  "repository": "git+https://github.com/carlosavellar/notes-app.git",
   "author": "",
   "license": "ISC",
   "bugs": {
