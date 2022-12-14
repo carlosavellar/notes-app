@@ -4,16 +4,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: ['babel-polyfill', './src/notes-app.js'],
   output: {
-    path: path.resolve(__dirname, './../bundle.js'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'js/bandle.js',
   },
   devServer: {
-    contentBase: './src',
+    contentBase: './',
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: './src/index.html',
-      template: './src/index.html',
+      filename: './index.html',
+      template: './index.html',
     }),
   ],
   module: {
