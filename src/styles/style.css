@@ -1,0 +1,58 @@
+:any-link > span {
+  padding: 0 0 0 5px;
+  margin-left: 7px;
+  font-style: italic;
+  color: #999;
+  font-size: 70%;
+  border-left: 1px dashed #999;
+}
+
+a > span i {
+  margin-left: 6px;
+}
+
+.del {
+  padding: 3px;
+  margin-right: 5px !important;
+  position: relative;
+  top: -2px;
+}
+
+html,
+body {
+  height: 100%;
+  margin: auto;
+  display: flex;
+}
+html {
+  background: url('./../assets/bg-notes.jpg') no-repeat;
+  background-size: cover;
+}
+
+body {
+  display: flex;
+  background-color: transparent !important;
+}
+
+body > div {
+  /* justify-content: center; */
+  max-width: 500px;
+  align-self: center;
+}
+
+body > div > div {
+  background: white;
+  padding: 30px;
+  /* border: 3px solid rgb(186, 197, 216, 0.2); */
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  background: linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 10px) calc(100% - 10px) no-repeat,
+    linear-gradient(53deg, #ffffff 0%, #96d4f6 100%);
+  border-radius: 10px;
+  padding: 9px;
+  box-sizing: border-box;
+  padding: 9px;
+  box-sizing: border-box;
+}

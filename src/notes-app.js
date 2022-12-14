@@ -46,6 +46,7 @@ document.querySelector("#searchTitle").addEventListener("input", e => {
 document.querySelector("#removeAll").addEventListener("click", e => {
   e.preventDefault();
   removeAll();
+  console.log("Log");
   renderNotes(notes, filters);
 });
 
