@@ -44,10 +44,5 @@ This app is a prototype to Add Notes featrue. You can add, edit and remove featu
 
 <br>
 
-## Visualize the Learning Process
-<img src="https://github.com/anfederico/clairvoyant/blob/master/media/Learning.gif" width=30%>
-
-<br>
-
 
 notes-app/README.md at master
