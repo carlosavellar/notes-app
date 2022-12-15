@@ -27,7 +27,7 @@ Latest commit c53c655 Dec 22, 2022
 History
 1 contributor
 184 lines (142 sloc) 6.54 KB
-<p align="center"><img width=12.5% src="https://carlosavellar.github.io/notes-app/src/assets/screen.png"></p>
+<p align="center"><img width=30% src="https://carlosavellar.github.io/notes-app/src/assets/screen.png"></p>
 
 <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![Python](https://img.shields.io/badge/python-v3.6+-blue.svg)
@@ -45,7 +45,7 @@ This app is a prototype to Add Notes featrue. You can add, edit and remove featu
 <br>
 
 ## Visualize the Learning Process
-<img src="https://github.com/anfederico/clairvoyant/blob/master/media/Learning.gif" width=40%>
+<img src="https://github.com/anfederico/clairvoyant/blob/master/media/Learning.gif" width=30%>
 
 <br>
 
