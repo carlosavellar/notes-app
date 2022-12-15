@@ -40,7 +40,7 @@ History
 ## Basic Overview
 
 This app is a prototype to Add Notes featrue. You can add, edit and remove feature.
-<p align="center"><img width=95% src="https://carlosavellar.github.io/notes-app/src/assets/screen-edit.png"></p>
+<p align="center"><img width=30% src="https://carlosavellar.github.io/notes-app/src/assets/screen-edit.png"></p>
 
 <br>
 
