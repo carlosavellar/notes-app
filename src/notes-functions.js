@@ -41,7 +41,7 @@ const generateNoteDom = (note) => {
     removeNote(note.id);
     renderNotes(notes, filters);
   });
-  itemLink.setAttribute('href', `./../edit.html#${note.id}`);
+  itemLink.setAttribute('href', `./edit.html#${note.id}`);
 
   if (note.title.length > 0 || note.body.length > 0) {
     itemLink.textContent = note.title ? note.title : '__|_/';
